@@ -89,6 +89,7 @@ class CeleryConfig(object):
   CELERY_IMPORTS = ('superset.sql_lab', )
   CELERY_RESULT_BACKEND = f"redis://{env('REDIS_HOST')}:{env('REDIS_PORT')}/0"
   CELERY_ANNOTATIONS = {'tasks.add': {'rate_limit': '10/s'}}
+  CELERY_TASK_PROTOCOL = 1	
 
 CELERY_CONFIG = CeleryConfig
 RESULTS_BACKEND = RedisCache(
@@ -96,4 +97,9 @@ RESULTS_BACKEND = RedisCache(
       port=env('REDIS_PORT'),
       key_prefix='superset_results'
 )
+
+#additional configs
+SQLLAB_TIMEOUT = 30*2*60
+
+SUPERSET_WEBSERVER_TIMEOUT = 60*60
 {{- end }}
