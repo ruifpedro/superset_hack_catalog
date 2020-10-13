@@ -63,7 +63,7 @@ from cachelib.redis import RedisCache
 def env(key, default=None):
     return os.getenv(key, default)
 
-MAPBOX_API_KEY = env('MAPBOX_API_KEY', '')
+MAPBOX_API_KEY = {{ .Values.mapboxApiKey | quote }}
 CACHE_CONFIG = {
       'CACHE_TYPE': 'redis',
       'CACHE_DEFAULT_TIMEOUT': 300,
